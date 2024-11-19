@@ -11,11 +11,11 @@ namespace WebClient
         static async Task Main(string[] args)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8080/api/");  // Change the port if needed
+            client.BaseAddress = new Uri("http://localhost:8080/api/");  
             
             try
             {
-                // Fetch available times of the day
+
                 var timesOfDay = await FetchDataFromAPI<List<string>>(client, "timesofday");
                 Console.WriteLine("Available Times of Day:");
                 foreach (var time in timesOfDay)
@@ -23,7 +23,6 @@ namespace WebClient
                     Console.WriteLine($"- {time}");
                 }
 
-                // Fetch available languages
                 var languages = await FetchDataFromAPI<List<string>>(client, "languages");
                 Console.WriteLine("\nSupported Languages:");
                 foreach (var language in languages)
@@ -31,7 +30,6 @@ namespace WebClient
                     Console.WriteLine($"- {language}");
                 }
 
-                // Prompt user for selections
                 Console.WriteLine("\nSelect a Time of Day:");
                 string selectedTimeOfDay = Console.ReadLine();
 
@@ -41,7 +39,6 @@ namespace WebClient
                 Console.WriteLine("Select a Tone (Formal or Casual):");
                 string selectedTone = Console.ReadLine();
 
-                // Create a request object
                 var request = new GreetingRequest
                 {
                     TimeOfDay = selectedTimeOfDay,
@@ -49,7 +46,6 @@ namespace WebClient
                     Tone = selectedTone
                 };
 
-                // Get the greeting from the API
                 var greeting = await GetGreeting(client, request);
                 if (greeting != null)
                 {
@@ -78,7 +74,7 @@ namespace WebClient
         {
             var jsonRequest = JsonSerializer.Serialize(request);
             var content = new StringContent(jsonRequest, System.Text.Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("greet", content);  // Change the endpoint name if needed
+            var response = await client.PostAsync("greet", content);  
 
             if (response.IsSuccessStatusCode)
             {
@@ -90,18 +86,16 @@ namespace WebClient
         }
     }
 
-    // Request model for the greeting
-    public class GreetingRequest
-    {
-        public string TimeOfDay { get; set; }
-        public string Language { get; set; }
-        public string Tone { get; set; } = "Formal";  // Default to Formal
-    }
+public class GreetingRequest
+{
+    public string? TimeOfDay { get; set; } 
+    public string? Language { get; set; } 
+    public string Tone { get; set; } = "Formal";
+}
 
-    // Response model for the greeting
-    public class GreetingResponse
-    {
-        public string GreetingMessage { get; set; }
-        public string Tone { get; set; } = "Formal";  // Default to Formal
-    }
+public class GreetingResponse
+{
+    public string? GreetingMessage { get; set; } 
+    public string Tone { get; set; } = "Formal";
+}
 }

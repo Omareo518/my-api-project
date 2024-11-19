@@ -42,7 +42,7 @@ app.post('/api/greet', async (req, res) => {
 app.get('/api/timesOfDay', async (req, res) => {
     try {
         const times = await db.all('SELECT DISTINCT timeOfDay FROM Greetings');
-        res.json({ times: times.map(t => t.timeOfDay) });
+        res.json(times.map(t => t.timeOfDay));  // Just return the array
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -52,7 +52,7 @@ app.get('/api/timesOfDay', async (req, res) => {
 app.get('/api/languages', async (req, res) => {
     try {
         const languages = await db.all('SELECT DISTINCT language FROM Greetings');
-        res.json({ languages: languages.map(l => l.language) });
+        res.json(languages.map(l => l.language));  // Just return the array
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

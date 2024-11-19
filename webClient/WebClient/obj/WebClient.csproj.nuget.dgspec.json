@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\WebClient\\WebClient.csproj": {}
+    "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\webClient\\WebClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\WebClient\\WebClient.csproj": {
+    "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\webClient\\WebClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\WebClient\\WebClient.csproj",
+        "projectUniqueName": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\webClient\\WebClient.csproj",
         "projectName": "WebClient",
-        "projectPath": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\WebClient\\WebClient.csproj",
+        "projectPath": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\webClient\\WebClient.csproj",
         "packagesPath": "C:\\Users\\omara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\WebClient\\obj\\",
+        "outputPath": "C:\\Users\\omara\\OneDrive\\Desktop\\Assignment 2\\webClient\\webClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\omara\\AppData\\Roaming\\NuGet\\NuGet.Config",

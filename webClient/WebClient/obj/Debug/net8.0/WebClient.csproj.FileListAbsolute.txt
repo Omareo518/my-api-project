@@ -1,0 +1,15 @@
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\bin\Debug\net8.0\WebClient.exe
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\bin\Debug\net8.0\WebClient.deps.json
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\bin\Debug\net8.0\WebClient.runtimeconfig.json
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\bin\Debug\net8.0\WebClient.dll
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\bin\Debug\net8.0\WebClient.pdb
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.AssemblyInfoInputs.cache
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.AssemblyInfo.cs
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.csproj.CoreCompileInputs.cache
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.sourcelink.json
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.dll
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\refint\WebClient.dll
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.pdb
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\WebClient.genruntimeconfig.cache
+C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\obj\Debug\net8.0\ref\WebClient.dll
