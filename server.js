@@ -1,4 +1,4 @@
-require('pg');
+// Import necessary libraries
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 
@@ -53,7 +53,7 @@ sequelize.sync()
 
 // Initialize Express app
 const app = express();
-const PORT = 8080;
+const HTTP_PORT = process.env.PORT || 8080;
 
 // Set views directory and template engine (if needed)
 app.set('views', __dirname + '/views');  // Set the views folder (for templates like EJS)
@@ -62,6 +62,7 @@ app.set('view engine', 'ejs');  // Set the view engine (replace 'ejs' if using a
 // Serve static files from the 'public' folder
 app.use(express.static(__dirname + '/public'));  // Adjust '/public' to where your static files are
 
+// Use JSON middleware
 app.use(express.json());
 
 // Routes (example endpoints for greeting functionality)
@@ -115,9 +116,14 @@ app.get('/api/languages', async (req, res) => {
   }
 });
 
+// Default route
+app.get('/', (req, res) => {
+  res.send('Web API is working!');
+});
+
 // Start the Express server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(HTTP_PORT, () => {
+  console.log(`Server listening on: http://localhost:${HTTP_PORT}`);
 });
 
 module.exports = app;  // Export the app for Vercel to use
