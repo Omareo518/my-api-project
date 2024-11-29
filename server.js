@@ -1,4 +1,5 @@
 // Import necessary libraries
+require('pg');
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 
