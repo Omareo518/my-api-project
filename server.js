@@ -1,8 +1,6 @@
-// Import necessary libraries
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Set up Sequelize to connect to PostgreSQL
 const sequelize = new Sequelize('postgres', 'postgres.dpbxhwvkyiwrxaycunnd', 'Ramoomar2008&', {
   host: 'aws-0-ca-central-1.pooler.supabase.com',
   dialect: 'postgres',
@@ -22,8 +20,8 @@ sequelize
     console.error('Unable to connect to PostgreSQL:', err);
   });
 
-// Define your models (for example, a Greetings model)
-const Greeting = sequelize.define('Greeting', {
+
+  const Greeting = sequelize.define('Greeting', {
   timeOfDay: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -51,7 +49,6 @@ sequelize.sync()
     console.error('Error syncing the models with the database:', err);
   });
 
-// Initialize Express app
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
