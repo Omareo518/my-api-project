@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebClient
-build_property.ProjectDir = C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\webClient\
+build_property.ProjectDir = C:\Users\omara\OneDrive\Desktop\Assignment 2\webClient\WebClient\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
