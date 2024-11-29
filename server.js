@@ -54,8 +54,8 @@ sequelize.sync()
 
 // Initialize Express app
 const app = express();
-const PORT = 8080;
 
+// Middleware
 app.use(express.json());
 
 // Routes (example endpoints for greeting functionality)
@@ -109,7 +109,4 @@ app.get('/api/languages', async (req, res) => {
   }
 });
 
-// Start the Express server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+module.exports = app;
