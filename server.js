@@ -10,18 +10,8 @@ const sequelize = new Sequelize('postgres', 'postgres.dpbxhwvkyiwrxaycunnd', 'Ra
   },
 });
 
-// Test the PostgreSQL connection
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection to PostgreSQL has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to PostgreSQL:', err);
-  });
-
-
-  const Greeting = sequelize.define('Greeting', {
+// Define the Greeting model
+const Greeting = sequelize.define('Greeting', {
   timeOfDay: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -40,10 +30,63 @@ sequelize
   },
 });
 
-// Sync the models with the database (creates tables if they don't exist)
-sequelize.sync()
+// Seed the database
+const seedDatabase = async () => {
+  const seedData = [
+    // English greetings
+    { timeOfDay: 'Morning', language: 'English', greetingMessage: 'Good Morning!', tone: 'Formal' },
+    { timeOfDay: 'Morning', language: 'English', greetingMessage: 'Good Morning!', tone: 'Casual' },
+    { timeOfDay: 'Afternoon', language: 'English', greetingMessage: 'Good Afternoon!', tone: 'Formal' },
+    { timeOfDay: 'Afternoon', language: 'English', greetingMessage: 'Good Afternoon!', tone: 'Casual' },
+    { timeOfDay: 'Evening', language: 'English', greetingMessage: 'Good Evening!', tone: 'Formal' },
+    { timeOfDay: 'Evening', language: 'English', greetingMessage: 'Good Evening!', tone: 'Casual' },
+
+    // French greetings
+    { timeOfDay: 'Morning', language: 'French', greetingMessage: 'Bonjour!', tone: 'Formal' },
+    { timeOfDay: 'Morning', language: 'French', greetingMessage: 'Salut!', tone: 'Casual' },
+    { timeOfDay: 'Afternoon', language: 'French', greetingMessage: 'Bon Après-midi!', tone: 'Formal' },
+    { timeOfDay: 'Afternoon', language: 'French', greetingMessage: 'Salut!', tone: 'Casual' },
+    { timeOfDay: 'Evening', language: 'French', greetingMessage: 'Bonsoir!', tone: 'Formal' },
+    { timeOfDay: 'Evening', language: 'French', greetingMessage: 'Salut!', tone: 'Casual' },
+
+    // Spanish greetings
+    { timeOfDay: 'Morning', language: 'Spanish', greetingMessage: '¡Buenos Días!', tone: 'Formal' },
+    { timeOfDay: 'Morning', language: 'Spanish', greetingMessage: '¡Hola!', tone: 'Casual' },
+    { timeOfDay: 'Afternoon', language: 'Spanish', greetingMessage: '¡Buenas Tardes!', tone: 'Formal' },
+    { timeOfDay: 'Afternoon', language: 'Spanish', greetingMessage: '¡Hola!', tone: 'Casual' },
+    { timeOfDay: 'Evening', language: 'Spanish', greetingMessage: '¡Buenas Noches!', tone: 'Formal' },
+    { timeOfDay: 'Evening', language: 'Spanish', greetingMessage: '¡Hola!', tone: 'Casual' },
+  ];
+
+  try {
+    const count = await Greeting.count();
+    if (count === 0) {
+      await Greeting.bulkCreate(seedData);
+      console.log('Database has been seeded.');
+    } else {
+      console.log('Database already contains data. Skipping seeding.');
+    }
+  } catch (error) {
+    console.error('Error seeding database:', error);
+  }
+};
+
+// Test the PostgreSQL connection
+sequelize
+  .authenticate()
   .then(() => {
+    console.log('Connection to PostgreSQL has been established successfully.');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to PostgreSQL:', err);
+  });
+
+// Sync the models with the database (creates tables if they don't exist)
+sequelize
+  .sync()
+  .then(async () => {
     console.log('Tables synced with the PostgreSQL database.');
+    await seedDatabase(); // Call seedDatabase after syncing
   })
   .catch((err) => {
     console.error('Error syncing the models with the database:', err);
@@ -52,17 +95,8 @@ sequelize.sync()
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
-// Set views directory and template engine (if needed)
-app.set('views', __dirname + '/views');  // Set the views folder (for templates like EJS)
-app.set('view engine', 'ejs');  // Set the view engine (replace 'ejs' if using another engine)
-
-// Serve static files from the 'public' folder
-app.use(express.static(__dirname + '/public'));  // Adjust '/public' to where your static files are
-
-// Use JSON middleware
+// Middleware and Routes
 app.use(express.json());
-
-// Routes (example endpoints for greeting functionality)
 
 // Greet Endpoint
 app.post('/api/greet', async (req, res) => {
@@ -94,7 +128,8 @@ app.get('/api/timesOfDay', async (req, res) => {
       attributes: ['timeOfDay'],
       group: ['timeOfDay'],
     });
-    res.json(times.map(t => t.timeOfDay)); // Just return the array of times of day
+    const uniqueTimes = times.map(t => t.timeOfDay);
+    res.json(uniqueTimes); // Return unique times of day
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -107,20 +142,16 @@ app.get('/api/languages', async (req, res) => {
       attributes: ['language'],
       group: ['language'],
     });
-    res.json(languages.map(l => l.language)); // Just return the array of languages
+    const uniqueLanguages = languages.map(l => l.language);
+    res.json(uniqueLanguages); // Return unique languages
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// Default route
-app.get('/', (req, res) => {
-  res.send('Web API is working!');
-});
-
-// Start the Express server
+// Start the server
 app.listen(HTTP_PORT, () => {
   console.log(`Server listening on: http://localhost:${HTTP_PORT}`);
 });
 
-module.exports = app;  // Export the app for Vercel to use
+module.exports = app;
